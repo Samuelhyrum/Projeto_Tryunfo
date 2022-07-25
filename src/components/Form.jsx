@@ -93,7 +93,7 @@ class Form extends React.Component {
             checked={ cardTrunfo }
             onChange={ onInputChange }
           />
-          Super Trybe Trunfo!
+          Super Trunfo
         </label>
         <br />
         <input
