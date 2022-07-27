@@ -91,7 +91,7 @@ class App extends React.Component {
     const { cardName, cardDescription,
       cardAttr1, cardAttr2, cardAttr3,
       cardRare, cardImage, cardTrunfo,
-      isSaveButtonDisabled, hasTrunfo } = this.state;
+      isSaveButtonDisabled, hasTrunfo, Cards } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -109,18 +109,21 @@ class App extends React.Component {
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-        />
+        <div>
+          { Cards.map((carta) => (
+            <Card
+              key={ carta.cardDescription }
+              cardName={ carta.cardName }
+              cardDescription={ carta.cardDescription }
+              cardAttr1={ carta.cardAttr1 }
+              cardAttr2={ carta.cardAttr2 }
+              cardAttr3={ carta.cardAttr3 }
+              cardImage={ carta.cardImage }
+              cardRare={ carta.cardRare }
+              cardTrunfo={ carta.cardTrunfo }
+            />
+          ))}
+        </div>
       </div>
     );
   }
