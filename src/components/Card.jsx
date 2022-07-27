@@ -59,8 +59,13 @@ class Card extends React.Component {
         </p>
         <p>
           {/* {cardTrunfo ? 'Super Trunfo' : 'not'} */}
-          {cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+          {cardTrunfo && <p data-testid="trunfo-card"> Super Trunfo</p> }
         </p>
+        <input
+          data-testid="delete-button"
+          type="button"
+          value="Excluir"
+        />
       </div>
     );
   }

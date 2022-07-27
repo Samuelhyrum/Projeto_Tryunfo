@@ -112,7 +112,7 @@ class App extends React.Component {
         <div>
           { Cards.map((carta) => (
             <Card
-              key={ carta.cardDescription }
+              key={ carta.cardName }
               cardName={ carta.cardName }
               cardDescription={ carta.cardDescription }
               cardAttr1={ carta.cardAttr1 }
@@ -123,6 +123,16 @@ class App extends React.Component {
               cardTrunfo={ carta.cardTrunfo }
             />
           ))}
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
         </div>
       </div>
     );
