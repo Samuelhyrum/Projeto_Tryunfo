@@ -49,6 +49,14 @@ class App extends React.Component {
     });
   };
 
+  removeCard = (index) => {
+    const { Cards } = this.state;
+    const apagar = Cards.filter((carta) => carta.cardName !== index);
+    this.setState({
+      Cards: apagar,
+    });
+  };
+
   onSaveButtonClick = (event) => {
     event.preventDefault();
     const { cardName, cardDescription,
@@ -88,52 +96,31 @@ class App extends React.Component {
   }
 
   render() {
-    const { cardName, cardDescription,
-      cardAttr1, cardAttr2, cardAttr3,
-      cardRare, cardImage, cardTrunfo,
-      isSaveButtonDisabled, hasTrunfo, Cards } = this.state;
+    const { Cards } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
+          { ...this.state }
           onInputChange={ this.onInputChange }
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <div>
-          { Cards.map((carta) => (
-            <Card
-              key={ carta.cardName }
-              cardName={ carta.cardName }
-              cardDescription={ carta.cardDescription }
-              cardAttr1={ carta.cardAttr1 }
-              cardAttr2={ carta.cardAttr2 }
-              cardAttr3={ carta.cardAttr3 }
-              cardImage={ carta.cardImage }
-              cardRare={ carta.cardRare }
-              cardTrunfo={ carta.cardTrunfo }
-            />
-          ))}
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
-        </div>
+        <Card
+          { ...this.state }
+        />
+        { (Cards.length !== 0) && Cards.map((carta, index) => (
+          <div key={ index }>
+            <Card key={ carta.cardName } { ...carta } />
+            <button
+              key={ index }
+              data-testid="delete-button"
+              type="button"
+              onClick={ () => this.removeCard(carta.cardName) }
+            >
+              Excluir
+            </button>
+          </div>
+        )) }
       </div>
     );
   }
